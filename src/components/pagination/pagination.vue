@@ -4,10 +4,10 @@
 <template>
     <div class="pagination">
         <div :class="[currentPage < 1? 'disabled' : '', 'direction-button']" @click="changePage(1)">
-            <img src="@/assets/dashboard/svg/arrow-first.svg"/>
+            <img src="@/assets/arrow-first.svg"/>
         </div>
         <div :class="[currentPage < 1? 'disabled' : '', 'direction-button']" @click="changePage(currentPage-1)">
-            <img src="@/assets/dashboard/svg/arrow-prev.svg"/>
+            <img src="@/assets/arrow-prev.svg"/>
         </div>
         <div v-if="totalPages<4" style="display: flex; flex-direction: row; gap:8px">
             <div :class="[currentPage===index+1 ? 'direction-button-active' : '', 'direction-button']" v-for="(item, index) in totalPages" :key="index" @click="changePage(index+1)">
@@ -34,10 +34,10 @@
         </div>
 
         <div class="direction-button" @click="changePage(currentPage+1)">
-            <img src="@/assets/dashboard/svg/arrow-next.svg"/>
+            <img src="@/assets/arrow-next.svg"/>
         </div>
         <div :class="[currentPage === totalPages? 'disabled' : '', 'direction-button']" @click="changePage(totalPages)">
-            <img src="@/assets/dashboard/svg/arrow-last.svg"/>
+            <img src="@/assets/arrow-last.svg"/>
         </div>
     </div>
 </template>

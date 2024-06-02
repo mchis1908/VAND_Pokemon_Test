@@ -1,0 +1,12 @@
+.pokemon_card{
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    align-items: center;
+
+    padding: 16px;
+    background: #ffffff;
+    box-shadow: 4px 8px 32px rgba(0, 0, 0, 0.08);
+    border-radius: 24px;
+    cursor: pointer;
+}

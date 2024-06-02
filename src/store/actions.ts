@@ -31,7 +31,7 @@ const actions = {
     { commit }: { commit: any },
     payload: any
   ) => {
-    const response = await sendGetOnce("/types", payload);
+    const response = await sendGetOnce("/types");
     if (response) {
       return response;
     } else {

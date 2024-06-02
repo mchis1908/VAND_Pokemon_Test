@@ -1,0 +1,85 @@
+.backdrop {
+    position: fixed;
+    top: 0;
+    left: 0;
+    width: 100%;
+    height: 100%;
+    background-color: rgba(0, 0, 0, 0.5); /* Semi-transparent black */
+    z-index: 999; /* Ensure backdrop is above other content */
+}
+  
+.detail-pokemon {
+    position: fixed;
+    top: 0;
+    left: 0; /* Adjust this value to control the distance from the right side */
+    width: 300px; /* Adjust the width as needed */
+    height: 100%;
+    background-color: white;
+    box-shadow: -5px 0 10px rgba(0, 0, 0, 0.5); /* Add shadow for a nice effect */
+    padding: 0 20px;
+    transition: transform 0.3s ease-in-out; /* Add transition for smooth animation */
+    transform: translateX(0); /* Initially translate the popup out of the screen */
+    z-index: 999;
+
+    display: flex;
+    flex-direction: column;
+    justify-content: space-between;
+    gap:32px;
+}
+  
+.detail-pokemon.open {
+    transform: translateX(0); /* Translate the popup back to the screen when opened */
+}
+
+.pokemon_type{
+    border-radius: 4px;
+    color: #fff;
+    padding: 4px;
+    font-family: 'Poppins';
+    font-size: 14px;
+    min-width: 80px;
+}
+
+.percentage-wrapper {
+    display: flex;
+    align-items: center;
+    margin: 10px 0; /* Adds vertical space between bars */
+    width: 100%;
+}
+  
+.label {
+    font-size: 14px;
+    color: #aaa;
+    margin-right: 10px;
+    white-space: nowrap; /* Prevents the text from wrapping */
+
+    min-width: 60px;
+    text-align: start;
+}
+  
+.progress-container {
+    position: relative;
+    height: 10px;
+    width: 100%;
+    background-color: #e0e0e0;
+    border-radius: 10px;
+    overflow: hidden;
+}
+  
+.percentage {
+    height: 100%;
+    border-radius: 10px 0 0 10px; /* Rounds the left corners */
+}
+  
+.point {
+    position: absolute;
+    top: 50%;
+    transform: translateY(-50%);
+    background-color: white;
+    padding: 2px 5px;
+    border-radius: 3px;
+    box-shadow: 0 0 5px rgba(0, 0, 0, 0.1);
+    font-size: 12px;
+    color: #333;
+}
+  

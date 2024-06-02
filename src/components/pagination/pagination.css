@@ -3,12 +3,12 @@
     flex-direction: row;
     justify-content: center;
     align-self: center;
-    gap: 8px;
+    gap: 4px;
 }
 
 .direction-button{
     display: flex !important;
-    width:32px;
+    width:20px;
     height:32px;
     padding: 0 7px !important;
     justify-content: center !important;
