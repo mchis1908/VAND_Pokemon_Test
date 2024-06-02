@@ -3,8 +3,7 @@
 
 <template>
     <div class="pokemon_card" :style="{ color: getTypeColor(data.type_1) }">
-        <img v-if="imageUrl" :src="imageUrl" alt="Pokemon Image" />
-        <p v-else>Loading image...</p>
+        <img :src="`https://api.vandvietnam.com/api/pokemon-api/pokemons/${data.id}/sprite`" alt="Pokemon Image" />
         <p style="font-weight: 600 ">{{ data.name }}</p>
         <p>{{ capitalizeFirstLetter(filter) }}: {{ data[filter] }}</p>
     </div>
