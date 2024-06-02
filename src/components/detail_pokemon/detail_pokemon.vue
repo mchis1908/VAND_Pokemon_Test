@@ -7,10 +7,10 @@
         <div style="display:flex; flex-direction:column; align-items: flex-end; gap:8px;">
             <img src="@/assets/close.svg" @click="closeDetail" style="margin-top: 4px; cursor:pointer"/>
             <div style="display:flex; flex-direction:column; align-items: center; gap:8px; width: 100%" >
-                <img src="" style="height: 96px; width:96px; object-fit: contain"/>
-                <div style="display:flex; flex-direction:column; justify-content:start; align-items:start; gap:8px " >
-                    <p style="font-weight: 600; font-size: 18px">{{ pokemon?.name }}</p>
-                    <p style="color: #ADADAD">Number: {{ pokemon?.total }}</p>
+                <img :src="`https://api.vandvietnam.com/api/pokemon-api/pokemons/${pokemon?.id}/sprite`" style="height: 96px; width:96px; object-fit: contain" alt="Pokemon Image" />
+                <div style="display:flex; flex-direction:column; justify-content:start; align-items:center; gap:8px " >
+                    <p style="font-weight: 600; font-size: 18px;">{{ pokemon?.name }}</p>
+                    <p style="color: #ADADAD"># {{ pokemon?.number }}</p>
                     <div style="display:flex; flex-direction:row; justify-content:start; gap:8px " >
                         <div class="pokemon_type" :style="{ background: getTypeColor(pokemon.type_1) }">{{ arrTypes[pokemon?.type_1 +1]?.name }}</div>
                         <div class="pokemon_type" :style="{ background: getTypeColor(pokemon.type_2) }">{{ arrTypes[pokemon?.type_2 +1]?.name }}</div>
@@ -19,6 +19,13 @@
             </div>
         </div>
         <div style="display:flex; flex-direction:column; justify-content:start; align-items:start; gap:8px;" >
+            <div class="percentage-wrapper">
+                <div class="label">TOTAL</div>
+                <div class="progress-container">
+                    <div class="percentage" :style="{width: getPercentage(pokemon.total, 1000), background: getTypeColor(pokemon.type_1)}"></div>
+                    <div class="point" :style="{left: getPercentage(pokemon.total, 1000),}">{{  pokemon?.total }}</div>
+                </div>
+            </div>
             <div class="percentage-wrapper">
                 <div class="label">HP</div>
                 <div class="progress-container">

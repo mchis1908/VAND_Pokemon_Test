@@ -18,8 +18,8 @@ import debounce from 'lodash/debounce';
 export default class Header extends Vue {
     public searchQuery: string= '';
     public showModal: any = false;
-    public filterQuery: string = 'number';
-    public arrFilter: any = ['number', 'total', 'hp', 'attack', 'defense', 'sp_atk', 'sp_def', 'speed'];
+    public filterQuery: string = 'total';
+    public arrFilter: any = ['total', 'hp', 'attack', 'defense', 'sp_atk', 'sp_def', 'speed'];
 
     public mounted() { 
         document.addEventListener('click', this.handleClickOutside);

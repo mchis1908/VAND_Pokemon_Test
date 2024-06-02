@@ -47,7 +47,7 @@ const DetailPokemon = defineAsyncComponent(() => import('@/components/detail_pok
 })
 
 export default class Home extends Vue {
-  public filter: string = 'number';
+  public filter: string = 'total';
   public type: any = '';
   public arrTypes: any = [];
   public searchQuery: string = '';
@@ -71,7 +71,7 @@ export default class Home extends Vue {
     await this.getAllPokemons(this.currentPage, this.filter, this.searchQuery, this.type);
   }
 
-  public async getAllPokemons(page:number = 1, filter: string ='number', searchQuery:string='', type:string = '') {
+  public async getAllPokemons(page:number = 1, filter: string ='total', searchQuery:string='', type:string = '') {
     this.pokemonArray = [];
     const perPage = 12;
     const payload = {

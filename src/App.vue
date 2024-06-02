@@ -19,8 +19,4 @@ p {
   font-size: 14px;
 }
 
-::-webkit-scrollbar-thumb {
-  background: #E8F3EC;
-  border-radius: 10px;
-}
 </style>
