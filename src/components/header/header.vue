@@ -16,6 +16,8 @@
                         </div>
                     </Transition>
                 </div>
+                <img v-if="sort==='-'" src="@/assets/sort_asc.svg" style="width: 20px; cursor: pointer;" @click="changeSort(sort)">
+                <img v-else src="@/assets/sort_desc.svg" style="width: 20px; cursor: pointer;" @click="changeSort(sort)">
             </div>
             
             <div class="search-container">

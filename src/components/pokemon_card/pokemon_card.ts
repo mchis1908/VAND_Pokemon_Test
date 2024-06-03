@@ -11,6 +11,7 @@ import { Vue, Options } from 'vue-class-component';
 export default class PokemonCard extends Vue {
     public data!: any;
     public filter!: string;
+    public imageUrl: string = '';
     public typeColors: any = {
         0: "#A8A77A", // Normal
         1: "#EE8130", // Fire
@@ -34,8 +35,26 @@ export default class PokemonCard extends Vue {
     };
     public isLoading: boolean = false; 
 
-    public mounted() {
-        
+    public beforeMount() {
+        // this.fetchAndDisplayImage();
+    }
+
+    public async fetchAndDisplayImage() {
+        this.isLoading = true;
+        try {
+          const response = await fetch(`https://api.vandvietnam.com/api/pokemon-api/pokemons/${this.data?.id}/sprite`);
+          
+          if (!response.ok) {
+            throw new Error('Network response was not ok ' + response.statusText);
+          }
+    
+          const blob = await response.blob();
+          this.imageUrl = URL.createObjectURL(blob); // Update reactive property
+        } catch (error) {
+          console.error('There was a problem with the fetch operation:', error);
+        } finally {
+          this.isLoading = false;
+        }
     }
 
     public getTypeColor(typeId:any) {

@@ -11,6 +11,7 @@
     <Pagination v-if="totalPages!==0" :totalPages="totalPages" :currentPage="currentPage" @changePage="changePage"/>
     
     <DetailPokemon v-if="showDetailPopup" :pokemon="selectedPokemon" @closeDetail="closeDetail" :arrTypes="arrTypes"/>
+    <div v-if="loading" class="spinner"></div> <!-- Spinner element -->
   </div>
 
 </template>

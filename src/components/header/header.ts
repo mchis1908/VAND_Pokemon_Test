@@ -9,7 +9,12 @@ import debounce from 'lodash/debounce';
         }, 500),
         filterQuery: {
             async handler(val, oldVal) {
-                this.handleFilter(val);
+                this.handleFilter(val, this.sort);
+            },
+        },
+        sort: {
+            async handler(val, oldVal) {
+                this.handleFilter(this.filterQuery, val);
             },
         },
     }
@@ -18,6 +23,7 @@ import debounce from 'lodash/debounce';
 export default class Header extends Vue {
     public searchQuery: string= '';
     public showModal: any = false;
+    public sort: any = '';
     public filterQuery: string = 'total';
     public arrFilter: any = ['total', 'hp', 'attack', 'defense', 'sp_atk', 'sp_def', 'speed'];
 
@@ -33,8 +39,8 @@ export default class Header extends Vue {
         this.$emit('handleSearch', searchQuery);
     }
 
-    public handleFilter(filterQuery:string){
-        this.$emit('handleFilter', filterQuery);
+    public handleFilter(filterQuery:string, sort: string){
+        this.$emit('handleFilter', filterQuery, sort);
     }
 
     public handleClickOutside = (event: any) => {
@@ -46,5 +52,10 @@ export default class Header extends Vue {
     public capitalizeFirstLetter(text:string) {
         if (!text) return '';
         return text.charAt(0).toUpperCase() + text.slice(1).toLowerCase();
+    }
+
+    public changeSort(text:string) {
+        if(text==='') this.sort= '-';
+        else this.sort= '';
     }
 }

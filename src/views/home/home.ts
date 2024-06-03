@@ -19,35 +19,11 @@ const DetailPokemon = defineAsyncComponent(() => import('@/components/detail_pok
   props: {
     userId: Number,
   },
-  watch:{
-    currentPage: {
-      async handler(val, oldVal) {
-        await this.getAllPokemons(this.currentPage, this.filter, this.searchQuery, this.type);
-      },
-    },
-    searchQuery: {
-      async handler(val, oldVal) {
-        this.currentPage = 1;
-        await this.getAllPokemons(this.currentPage, this.filter, this.searchQuery, this.type);
-      },
-    },
-    filter: {
-      async handler(val, oldVal) {
-        this.currentPage = 1;
-        await this.getAllPokemons(this.currentPage, this.filter, this.searchQuery, this.type);
-      },
-    },
-    type: {
-      async handler(val, oldVal) {
-        this.currentPage = 1;
-        await this.getAllPokemons(this.currentPage, this.filter, this.searchQuery, this.type);
-      },
-    },
-  }
 })
 
 export default class Home extends Vue {
   public filter: string = 'total';
+  public sort: string = '';
   public type: any = '';
   public arrTypes: any = [];
   public searchQuery: string = '';
@@ -56,7 +32,7 @@ export default class Home extends Vue {
   public pokemonArray:any = [];
   public selectedPokemon:any;
   public showDetailPopup:any = false;
-  // public arrImage:any = [];
+  public loading: boolean = false;
 
   public async beforeMount(){
     await this.handleGetTypes();
@@ -72,12 +48,13 @@ export default class Home extends Vue {
   }
 
   public async getAllPokemons(page:number = 1, filter: string ='total', searchQuery:string='', type:string = '') {
+    this.loading = true;
     this.pokemonArray = [];
-    const perPage = 12;
+    const perPage = 24;
     const payload = {
       'page[size]' : perPage,
       'page[number]': page,
-      'sort': `-${filter}`,
+      'sort': this.sort+ filter,
       'filter[name]' : searchQuery,
       'filter[type]' : type,
     };
@@ -86,29 +63,40 @@ export default class Home extends Vue {
       this.totalPages= res.data.meta.last_page;
       this.pokemonArray = await res.data.data;
     }
+    this.loading = false;
   }
 
   public async handleGetTypes(){
+    this.loading = true;
     const res: any = await this.$store.dispatch(MutationTypes.GET_TYPES);
     if (res.status === 200) {
       this.arrTypes= res.data.data;
     }
+    this.loading = false;
   }
 
   public async changePage(value:any) {
     this.currentPage = value;
+    await this.getAllPokemons(this.currentPage, this.filter, this.searchQuery, this.type);
   }
 
   public async handleSearch(searchQuery:string) {
     this.searchQuery = searchQuery;
+    this.currentPage = 1;
+    await this.getAllPokemons(this.currentPage, this.filter, this.searchQuery, this.type);
   }
 
-  public async handleFilter(filterQuery:string) {
+  public async handleFilter(filterQuery:string, sort:string) {
     this.filter = filterQuery;
+    this.sort = sort;
+    this.currentPage = 1;
+    await this.getAllPokemons(this.currentPage, this.filter, this.searchQuery, this.type);
   }
   
-  public handleSelectType(type:number){
+  public async handleSelectType(type:number){
     this.type = type;
+    this.currentPage = 1;
+    await this.getAllPokemons(this.currentPage, this.filter, this.searchQuery, this.type);
   }
 
   public showDetail(pokemon:any) {

@@ -7,7 +7,7 @@
         <div style="display:flex; flex-direction:column; align-items: flex-end; gap:8px;">
             <img src="@/assets/close.svg" @click="closeDetail" style="margin-top: 4px; cursor:pointer"/>
             <div style="display:flex; flex-direction:column; align-items: center; gap:8px; width: 100%" >
-                <img :src="`https://api.vandvietnam.com/api/pokemon-api/pokemons/${pokemon?.id}/sprite`" style="height: 96px; width:96px; object-fit: contain" alt="Pokemon Image" />
+                <img :src="`https://api.vandvietnam.com/api/pokemon-api/pokemons/${pokemon?.id}/sprite`" style="height: 150px; width:150px; object-fit: contain" alt="Pokemon Image" />
                 <div style="display:flex; flex-direction:column; justify-content:start; align-items:center; gap:8px " >
                     <p style="font-weight: 600; font-size: 18px;">{{ pokemon?.name }}</p>
                     <p style="color: #ADADAD">Number: #{{ pokemon?.number }}</p>
